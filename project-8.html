@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Memuat jQuery -->
+    <style>
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 10px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        margin-top: 10px; /* Menambahkan jarak ke atas */
+      }
+
+      .gallery-heading {
+        text-align: left;
+        margin-bottom: 20px;
+        margin-top: 80px;
+        color: white;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+
+      .modal-content {
+        display: block;
+        max-width: 80%;
+        max-height: 80vh;
+      }
+
+      .modal-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: auto; /* Menempatkan gambar tepat di tengah */
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .container {
+        margin-top: 20px; /* Penambahan margin atas */
+      }
+
+      /* Menampilkan 3 gambar dalam satu baris */
+      @media (min-width: 600px) {
+        .gallery {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+      <a href="about.html"><i class="fas fa-user"></i> <span>About</span></a>
+      <a href="portfolio.html"
+        ><i class="fas fa-briefcase"></i> <span>Portfolio</span></a
+      >
+      <a href="contact.html"
+        ><i class="fas fa-address-book"></i> <span>Contact</span></a
+      >
+    </nav>
+
+    <section class="portfolio">
+      <h1 class="heading">
+        <span>Rekam Medis Elekronik</span> Laravel 10 + Vuejs 3
+      </h1>
+      <div class="container">
+        <img class="pop" src="images/rme-1.png" alt="Image 1" />
+        <h1 class="gallery-heading">Screenshot</h1>
+        <div class="gallery">
+          <img src="images/rme-2.png" />
+          <img src="images/rme-3.png" />
+          <img src="images/rme-4.png" />
+          <img src="images/rme-5.png" />
+        </div>
+      </div>
+      <h4
+        style="
+          color: yellow;
+          margin-top: 40px;
+          margin-bottom: 20px;
+          text-align: left;
+          font-size: 14px;
+        "
+      >
+        *Portofolio ini hanya berupa screenshot gambar. Jika ingin versi livenya
+        bisa di demo kan saat interview
+      </h4>
+      <a href="portfolio.html" class="btn"
+        >Back <i class="fas fa-arrow-left"></i
+      ></a>
+    </section>
+
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01" />
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $(".gallery img").click(function () {
+          var imageSrc = $(this).attr("src");
+          $("#img01").attr("src", imageSrc);
+          $("#myModal").css("display", "flex");
+        });
+        $(".pop").click(function () {
+          var imageSrc = $(this).attr("src");
+          $("#img01").attr("src", imageSrc);
+          $("#myModal").css("display", "flex");
+        });
+
+        $(".close").click(function () {
+          $("#myModal").css("display", "none");
+        });
+      });
+
+      // Menyembunyikan modal saat dokumen dimuat
+      $(document).ready(function () {
+        $("#myModal").hide();
+      });
+
+      $(document).keydown(function (event) {
+        if (event.key === "Escape") {
+          $("#myModal").hide();
+        }
+      });
+    </script>
+  </body>
+</html>
